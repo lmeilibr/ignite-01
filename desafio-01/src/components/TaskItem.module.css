@@ -1,0 +1,71 @@
+.task {
+    display: flex;
+    background: var(--gray-500);
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    border: 1px solid var(--gray-500);
+    border-radius: 8px;
+    height: 72px;
+}
+
+.icon {
+    display: flex;
+    position: absolute;
+    width: 52px;
+    margin: 19.27px 0 0 6px;
+}
+
+.completed{
+    position: absolute;
+    color: var(--gray-100);
+    fill: red;
+}
+
+.filledCircle{
+    position: absolute;
+    color: var(--purple-dark);
+}
+
+.completed circle{
+    visibility: hidden;
+}
+
+.completedText {
+    margin: auto auto auto 52px;
+    color: var(--gray-300);
+    text-decoration-line: line-through;
+}
+
+.text {
+    display: flex;
+    align-items: flex-start;
+    margin: auto auto auto 52px;
+    color: var(--gray-100);
+}
+
+.text circle{
+    visibility: hidden;
+}
+
+.todoCircle circle{
+    color: var(--blue);
+}
+
+.todoCircle:hover circle{
+    fill: var(--blue-dark);
+}
+
+.icon:hover svg{
+    fill: var(--purple);
+}
+
+.trash{
+    margin-top: 16px;
+    margin-right: 16px;
+    color: var(--gray-300);
+}
+
+.trash:hover{
+    color: var(--danger);
+}
