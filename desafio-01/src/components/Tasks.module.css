@@ -61,7 +61,7 @@
     gap: 10px;
     color: var(--gray-200);
 
-    width: 25px;
+    min-width: 30px;
     height: 19px;
     background: var(--gray-400);
     border-radius: 999px;

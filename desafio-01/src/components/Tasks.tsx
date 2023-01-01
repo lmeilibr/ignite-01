@@ -11,17 +11,28 @@ interface TasksProps {
 
 
 export function Tasks({taskList, onDelete, onToggle}: TasksProps) {
+    function countTasksConcluidas() {
+        const tasksDone = taskList.filter(task => {
+            return task.isCompleted
+        })
+        if (tasksDone.length > 0) {
+            return `${tasksDone.length} de ${taskList.length}`
+        } else {
+            return 0
+        }
+
+    }
 
     return (
         <div className={styles.tasks}>
             <header className={styles.headerTasks}>
                 <div className={styles.created}>
                     <span>Tarefas criadas</span>
-                    <span className={styles.counter}>0</span>
+                    <span className={styles.counter}>{taskList.length}</span>
                 </div>
                 <div className={styles.done}>
                     <span>Concluídas</span>
-                    <span className={styles.counter}>0</span>
+                    <span className={styles.counter}>{countTasksConcluidas()}</span>
                 </div>
             </header>
             {(taskList.length > 0) ? taskList.map(task => {
