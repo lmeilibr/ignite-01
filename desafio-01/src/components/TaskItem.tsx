@@ -1,15 +1,33 @@
 import {CheckCircle, Circle, Trash} from "phosphor-react"
 import styles from './TaskItem.module.css'
 
+export interface TaskItem {
+    id: string
+    isCompleted: boolean;
+    text: string;
+}
+
 export interface TaskProps {
-    isCompleted: boolean
-    text: string
+    task: TaskItem
+    onDelete: (id: string) => void;
+    onToggle: (id: string) => void;
+
+
 }
 
 
-export function TaskItem({isCompleted, text}: TaskProps) {
+export function TaskItem({task, onDelete, onToggle}: TaskProps) {
+
+    function handleDelete() {
+        onDelete(task.id)
+    }
+
+    function handleCheckTask(){
+        onToggle(task.id)
+    }
+
     function taskText() {
-        if (isCompleted) {
+        if (task.isCompleted) {
             return styles.completedText
         } else {
             return styles.text
@@ -17,7 +35,7 @@ export function TaskItem({isCompleted, text}: TaskProps) {
     }
 
     function getIcon() {
-        if (isCompleted) {
+        if (task.isCompleted) {
             return <>
                 <div className={styles.filledCircle}>
                     <Circle size={17.45} weight={"fill"}/>
@@ -39,12 +57,12 @@ export function TaskItem({isCompleted, text}: TaskProps) {
 
     return (
         <div className={styles.task}>
-            <div className={styles.icon}>
+            <div className={styles.icon} onClick={handleCheckTask}>
                 {getIcon()}
             </div>
-            <div className={taskText()}>{text}</div>
+            <div className={taskText()}>{task.text}</div>
             <div className={styles.trash}>
-                <Trash size={24}/>
+                <Trash onClick={handleDelete} size={24}/>
             </div>
         </div>
     )

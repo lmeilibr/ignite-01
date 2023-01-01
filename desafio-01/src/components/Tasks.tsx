@@ -1,42 +1,17 @@
 import styles from './Tasks.module.css'
 import clipboardImg from '../assets/Clipboard.svg'
-import {TaskItem, TaskProps} from "./TaskItem";
+import {TaskItem} from "./TaskItem";
 
-interface Task extends TaskProps {
-    id: string
+
+interface TasksProps {
+    taskList: TaskItem[];
+    onDelete: (id: string) => void;
+    onToggle: (id: string) => void;
 }
 
-let taskList: Task[] = [
-    {
-        id: "fdsgfsd1",
-        isCompleted: false,
-        text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-    {
-        id: "fdsgfsd2",
-        isCompleted: false,
-        text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-    {
-        id: "fdsgfsd3",
-        isCompleted: false,
-        text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-    {
-        id: "fdsgfsd4",
-        isCompleted: true,
-        text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-    {
-        id: "fdsgfsd5",
-        isCompleted: true,
-        text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-]
 
-// taskList = []
+export function Tasks({taskList, onDelete, onToggle}: TasksProps) {
 
-export function Tasks() {
     return (
         <div className={styles.tasks}>
             <header className={styles.headerTasks}>
@@ -49,11 +24,15 @@ export function Tasks() {
                     <span className={styles.counter}>0</span>
                 </div>
             </header>
-            {(taskList.length > 0)?taskList.map(task => {
+            {(taskList.length > 0) ? taskList.map(task => {
                 return (
-                    <TaskItem key={task.id} isCompleted={task.isCompleted} text={task.text}/>
+                    <TaskItem key={task.id}
+                              task={task}
+                              onDelete={onDelete}
+                              onToggle={onToggle}
+                    />
                 )
-            }):<div className={styles.clipboard}>
+            }) : <div className={styles.clipboard}>
                 <img src={clipboardImg} alt="Clipboard"/>
                 <div>
                     <p className={styles.title}>Você ainda não tem tarefas cadastradas</p>
