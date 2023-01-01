@@ -18,6 +18,8 @@ export function NewTask({onCreateNewTask}: NewTaskProps) {
         setNewTaskText(event.target.value)
     }
 
+    const isNewTaskEmpty = newTaskText.length === 0
+
 
     return (
         <form onSubmit={handleCreateNewTask} className={styles.taskForm}>
@@ -27,7 +29,7 @@ export function NewTask({onCreateNewTask}: NewTaskProps) {
                    onChange={handleNewTaskChange}
                    required
             />
-            <button type="submit" className={styles.button}>Criar
+            <button type="submit" disabled={isNewTaskEmpty} className={styles.button}>Criar
                 <img src={plus} alt=""/></button>
 
         </form>
